@@ -21,7 +21,7 @@ MongoClient.connect(url).then(db => {
   });
 
   /* tslint:disable:no-console */
-  console.log("Testing latency through MongoDB, at 1 second intervals...");
+  console.log("Testing latency through MongoDB at 1 second intervals...");
 
   Observable.interval(1000)
     .take(60)
@@ -29,5 +29,8 @@ MongoClient.connect(url).then(db => {
     .do(i => console.time(i));
   // .subscribe(ticksIn);
 
-  // ticksOut.subscribe((i: string) => console.timeEnd(i));
+  // ticksOut.subscribe({
+  //   complete: () => db.close(),
+  //   next: (i: string) => console.timeEnd(i)
+  // });
 });

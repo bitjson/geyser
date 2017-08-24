@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Example: ticks",
+      "program": "${workspaceRoot}/src/examples/ticks.ts",
+      "outFiles": ["${workspaceRoot}/build/**/*.js"],
+      "skipFiles": [
+        "<node_internals>/**/*.js",
+        "${workspaceRoot}/node_modules/**/*.js"
+      ],
+      "stopOnEntry": true,
+      "smartStep": true
+    }
+  ]
+}
