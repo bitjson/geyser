@@ -18,8 +18,8 @@ import { Observable } from 'rxjs';
 import { MongoObserver } from 'geyser-mongo';
 
 // Create an Observer which writes to a 'ticks' collection in MongoDB
-const ticks = MongoObserver({
-  connect: 'mongodb://localhost/my-db',
+const ticks = MongoObserver.connect({
+  url: 'mongodb://localhost/my-db',
   collection: 'ticks'
 })
 
@@ -33,8 +33,8 @@ Listening Node.js process:
 import { MongoObservable } from 'geyser-mongo';
 
 // create a 
-const ticks = MongoObservable({
-  connect: 'mongodb://localhost/my-db',
+const ticks = MongoObservable.connect({
+  url: 'mongodb://localhost/my-db',
   collection: 'ticks'
 })
 
