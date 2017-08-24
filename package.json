@@ -1,0 +1,97 @@
+{
+  "name": "geyser-mongo",
+  "version": "1.0.0",
+  "description": "Publish and subscribe to streams of data over MongoDB",
+  "main": "build/main/index.js",
+  "typings": "build/main/index.d.ts",
+  "repository": "https://github.com/bitjson/geyser",
+  "author": "Jason Dreyzehner <jason@dreyzehner.com>",
+  "license": "MIT",
+  "scripts": {
+    "info": "npm-scripts-info",
+    "build": "tsc",
+    "test": "run-s build && run-p test:lint test:unit",
+    "test:lint": "run-p test:lint:*",
+    "test:lint:check-prettier": "prettier --parser typescript 'src/**/*.ts' --list-different",
+    "test:lint:tslint": "tslint --project . --type-check src/**/*.ts",
+    "test:unit": "nyc ava && run-s test:check-coverage",
+    "test:check-coverage": "nyc check-coverage --lines 100 --functions 100 --branches 100",
+    "test:benchmark": "ts-node bench/integration.ts",
+    "watch": "tsc && run-p watch:*",
+    "watch:ava": "ava --watch",
+    "watch:tsc": "tsc -w",
+    "cov": "run-s test cov:html cov:open",
+    "cov:html": "nyc report --reporter=html",
+    "cov:open": "opn coverage/index.html",
+    "cov:send": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "docs": "run-s docs:html docs:open",
+    "docs:publish": "run-s docs:html docs:gh-pages",
+    "docs:html": "typedoc src/index.ts --excludePrivate --mode file --theme minimal --out build/docs",
+    "docs:open": "opn build/docs/index.html",
+    "docs:gh-pages": "gh-pages -d build/docs",
+    "docs:json": "typedoc --mode file --json build/docs/typedoc.json src/index.ts",
+    "standard-version": "standard-version",
+    "release": "run-s reset test docs:publish standard-version",
+    "prettier": "prettier --parser typescript 'src/**/*.ts' --write",
+    "reset": "git clean -dfx && git reset --hard && yarn"
+  },
+  "scripts-info": {
+    "info": "Display information about the scripts",
+    "build": "Build the library",
+    "test": "Build, lint, and test the library",
+    "watch": "Watch source files, rebuild library on changes, rerun relevant tests",
+    "cov": "Run tests, generate the HTML coverage report, and open it in a browser",
+    "docs": "Generate HTML API documentation and open it in a browser",
+    "docs:publish": "Generate HTML API documentation and push it to GitHub Pages",
+    "docs:json": "Generate API documentation in typedoc JSON format",
+    "standard-version": "Bump package.json version, update CHANGELOG.md, tag a release",
+    "release": "Clean, build, test, publish docs, and prepare release (a one-step publish process)",
+    "reset": "Delete all untracked files and reset the repo to the last commit",
+    "prettier": "Clean up src formatting with prettier"
+  },
+  "engines": {
+    "node": ">=4.5"
+  },
+  "devDependencies": {
+    "@types/benchmark": "^1.0.30",
+    "@types/mongodb": "^2.2.10",
+    "@types/node": "^8.0.4",
+    "ava": "^0.19.1",
+    "benchmark": "^2.1.4",
+    "codecov": "^2.2.0",
+    "cpx": "^1.5.0",
+    "gh-pages": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "npm-run-all": "^4.0.2",
+    "npm-scripts-info": "^0.3.6",
+    "nyc": "^11.0.3",
+    "opn-cli": "^3.1.0",
+    "prettier": "^1.5.3",
+    "standard-version": "^4.0.0",
+    "trash-cli": "^1.4.0",
+    "tslint": "^5.4.3",
+    "tslint-config-prettier": "^1.3.0",
+    "typedoc": "^0.7.1",
+    "typescript": "^2.4.1"
+  },
+  "keywords": [
+    "mongo",
+    "pubsub",
+    "rxjs"
+  ],
+  "ava": {
+    "files": [
+      "build/**/*.spec.js"
+    ]
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.spec.js"
+    ]
+  },
+  "dependencies": {
+    "mongodb": "^2.2.31",
+    "rxjs": "^5.4.3",
+    "tslib": "^1.6.0"
+  }
+}

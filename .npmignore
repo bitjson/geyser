@@ -1,0 +1,10 @@
+src
+tsconfig.json
+tslint.json
+.travis.yml
+.github
+build/docs
+
+coverage
+.nyc_output
+*.log

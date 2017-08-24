@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "outDir": "build",
+    "rootDir": "src",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "declaration": true,
+    "importHelpers": true,
+    "inlineSourceMap": true,
+    "listFiles": false,
+    "traceResolution": false,
+    "pretty": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny" : true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "lib" : [
+      "es2017",
+      "dom" // dirty hack around: https://github.com/ReactiveX/rxjs/issues/1986
+    ],
+    "types" : [
+      "node"
+    ]
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules/**"
+  ],
+  "compileOnSave": false
+}
