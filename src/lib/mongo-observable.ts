@@ -1,15 +1,11 @@
 import { Db, MongoClient } from "mongodb";
 import { Observable, Observer } from "rxjs";
-
-export interface MongoObservableOptions {
-  db: Db;
-  collection: string;
-}
+import { GeyserType } from "./types";
 
 /**
  * An observable which emits messages added to a given MongoDB collection.
  */
-export class MongoObservable extends Observable<any> {
+export class MongoObservable extends Observable<GeyserType> {
   /**
    * Create a new MongoObservable given an open MongoDB connection. 
    */

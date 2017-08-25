@@ -1,4 +1,3 @@
-// import {} from "mongodb";
 import { MongoClient } from "mongodb";
 import { Observable } from "rxjs";
 
@@ -26,8 +25,8 @@ MongoClient.connect(url).then(db => {
   Observable.interval(1000)
     .take(60)
     .map(i => i.toString())
-    .do(i => console.time(i));
-  // .subscribe(ticksIn);
+    .do(i => console.time(i))
+    .subscribe(ticksIn);
 
   // ticksOut.subscribe({
   //   complete: () => db.close(),
